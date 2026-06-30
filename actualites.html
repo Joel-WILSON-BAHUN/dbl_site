@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actualités — DBL</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script>(function(){ document.documentElement.setAttribute('data-theme', localStorage.getItem('dbl-theme')||'light'); })();</script>
+</head>
+<body>
+<main>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Vie de l'association</span>
+    <div class="divider" style="margin:10px auto 18px;"></div>
+    <h1>Actualités</h1>
+    <p>Élections, aide solidaire, tontines, événements — tout ce qui anime la Dynamique Bapa de Libreville.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:48px;">
+
+  <!-- Filtres -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;" data-aos="fade-up">
+    <button class="actu-filter active" onclick="filterActu('tous')">Toutes les actualités</button>
+    <button class="actu-filter" onclick="filterActu('election')">Élections</button>
+    <button class="actu-filter" onclick="filterActu('solidarite')">Solidarité</button>
+    <button class="actu-filter" onclick="filterActu('tontine')">Tontines</button>
+    <button class="actu-filter" onclick="filterActu('evenement')">Événements</button>
+  </div>
+
+  <div class="actu-grid" id="actu-grid"></div>
+
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2024 Dynamique Bapa de Libreville</span>
+      <span class="footer-devise">Pa 'a – Kuitchouè</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+.actu-filter {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .18s;
+  font-family: 'DM Sans', sans-serif;
+}
+.actu-filter:hover { background: var(--bg2); color: var(--text); }
+.actu-filter.active { background: var(--green); color: #fff; border-color: var(--green); }
+</style>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="nav-common.js"></script>
+<script>
+
+const ACTUS = [
+  {
+    cat: 'election',
+    catLabel: 'Élection',
+    date: '20 juin 2025',
+    titre: 'Calendrier électoral validé pour le renouvellement du Président',
+    texte: 'Le Bureau a officiellement validé le calendrier pour l\'élection du prochain Président. Les candidatures sont ouvertes jusqu\'au 10 juillet 2025. Rappel : une caution de 50 000F CFA non remboursable est exigée de chaque candidat.',
+    img: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'tontine',
+    catLabel: 'Tontine',
+    date: '15 juin 2025',
+    titre: 'Ouverture officielle de la banque scolaire 2025',
+    texte: 'La banque scolaire de l\'exercice 2025 est désormais ouverte. Le premier tirage au sort a désigné le premier bénéficiaire. Les adhérents souhaitant y participer doivent se rapprocher du Trésorier Général avant la prochaine réunion.',
+    img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'solidarite',
+    catLabel: 'Solidarité',
+    date: '8 juin 2025',
+    titre: 'Aide accordée à la famille NGUOUONMEDJE suite à un deuil',
+    texte: 'Conformément aux statuts, l\'association a apporté son soutien financier et moral à la famille NGUOUONMEDJE suite au décès d\'un parent au Cameroun. Une délégation de deux membres a représenté la DBL aux obsèques.',
+    img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'evenement',
+    catLabel: 'Événement',
+    date: '1er juin 2025',
+    titre: 'Voir bébé de M. et Mme NOUMBISSI — Compte rendu',
+    texte: 'Le voir bébé organisé en l\'honneur de la naissance du fils de M. et Mme NOUMBISSI s\'est tenu au siège de la DBL. L\'association a remis l\'aide de 150 000F CFA conformément au règlement intérieur. La réception a rassemblé l\'ensemble des membres présents.',
+    img: 'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'tontine',
+    catLabel: 'Tontine',
+    date: '25 mai 2025',
+    titre: 'Cassation de la tontine mensuelle de 100 000F — Bilan positif',
+    texte: 'La tontine mensuelle de 100 000F a achevé son cycle avec succès. La fête de cassation s\'est tenue au siège selon la tradition, financée à hauteur de 30% des intérêts générés. Aucun incident de défaillance n\'a été relevé sur ce cycle.',
+    img: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'solidarite',
+    catLabel: 'Solidarité',
+    date: '18 mai 2025',
+    titre: 'Visite médicale au chevet de M. MEDJOK hospitalisé',
+    texte: 'Suite à l\'hospitalisation de M. MEDJOK Aimé dans un établissement agréé CNAMGS de Libreville, une délégation désignée par le Président s\'est rendue à son chevet au nom de l\'association. L\'aide prévue au règlement intérieur a été mise en cours de traitement.',
+    img: 'https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'election',
+    catLabel: 'Élection',
+    date: '10 mai 2025',
+    titre: 'Rappel des conditions d\'éligibilité à la présidence',
+    texte: 'À l\'approche de l\'échéance électorale, le Secrétaire Général rappelle les conditions à remplir pour tout candidat à la présidence : être fils ou fille Bapa, résident à Libreville, de nationalité camerounaise, marié(e), avec résidence fixe et un passage au village au moins une fois par an.',
+    img: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'evenement',
+    catLabel: 'Événement',
+    date: '2 mai 2025',
+    titre: 'Réunion du Comité Central — Décisions du mois de mai',
+    texte: 'Le Comité Central s\'est réuni en séance ordinaire. Principaux points abordés : point financier sur le fond d\'aide, révision du barème de la tontine de présence, et désignation d\'un nouveau signataire bancaire soumis à validation de l\'AG.',
+    img: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&q=80&w=600&h=340'
+  },
+  {
+    cat: 'solidarite',
+    catLabel: 'Solidarité',
+    date: '20 avril 2025',
+    titre: 'Aide mariage versée à Mme KENMOGNE Dorice Flore',
+    texte: 'L\'association a remis l\'aide mariage de 250 000F CFA à Mme KENMOGNE Dorice Flore, conformément à l\'article 12 du règlement intérieur. La collecte obligatoire de 10 000F par adhérent a été effectuée lors de la réunion du 1er dimanche d\'avril.',
+    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=600&h=340'
+  }
+];
+
+let filtreCourant = 'tous';
+
+function renderActus(filtre) {
+  const grid = document.getElementById('actu-grid');
+  grid.innerHTML = '';
+  const liste = filtre === 'tous' ? ACTUS : ACTUS.filter(a => a.cat === filtre);
+  if (liste.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted);font-size:14px;">Aucune actualité dans cette catégorie pour le moment.</p>';
+    return;
+  }
+  liste.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.className = 'actu-card';
+    el.setAttribute('data-aos', 'fade-up');
+    el.setAttribute('data-aos-delay', String((i % 3) * 60));
+    el.innerHTML = `
+      <div class="actu-card-img">
+        <img src="${a.img}" alt="${a.titre}" loading="lazy"/>
+        <span class="actu-card-tag">${a.catLabel}</span>
+      </div>
+      <div class="actu-card-body">
+        <div class="actu-meta">${a.date}</div>
+        <h3>${a.titre}</h3>
+        <p>${a.texte}</p>
+      </div>
+    `;
+    grid.appendChild(el);
+  });
+  AOS.refreshHard();
+}
+
+function filterActu(filtre) {
+  filtreCourant = filtre;
+  document.querySelectorAll('.actu-filter').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.actu-filter').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + filtre + "'")) b.classList.add('active');
+  });
+  renderActus(filtre);
+}
+
+renderActus('tous');
+initNav('actualites');
+AOS.init({ once: true, offset: 50, duration: 650 });
+</script>
+</body>
+</html>

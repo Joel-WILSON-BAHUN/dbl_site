@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bureau Exécutif — DBL</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script>(function(){ document.documentElement.setAttribute('data-theme', localStorage.getItem('dbl-theme')||'light'); })();</script>
+</head>
+<body>
+
+<!-- MODAL BUREAU MEMBRE -->
+<div class="bureau-modal-overlay" id="bureau-modal">
+  <div class="bureau-modal-box">
+    <div class="bureau-modal-top">
+      <img id="bm-photo" src="" alt="" class="bureau-modal-photo"/>
+      <div class="bureau-modal-head">
+        <div class="poste-tag" id="bm-poste-tag"></div>
+        <h3 id="bm-nom"></h3>
+        <div class="sous-titre" id="bm-sous"></div>
+      </div>
+      <button class="bureau-modal-close" id="bm-close">&#x2715;</button>
+    </div>
+    <div class="bureau-modal-body" id="bm-body"></div>
+  </div>
+</div>
+
+<main>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Gouvernance</span>
+    <div class="divider" style="margin:10px auto 18px;"></div>
+    <h1>Bureau Exécutif</h1>
+    <p>Les membres responsables de l'administration et du bon fonctionnement de la DBL. Cliquez sur un membre pour voir ses attributions en détail.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:48px;">
+
+  <!-- Note bénévole -->
+  <div style="padding:16px 20px;border-radius:12px;background:var(--surface2,var(--bg2));border:1px solid var(--border2);margin-bottom:44px;display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--muted);" data-aos="fade-up">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--green);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>Le travail des membres du Bureau Exécutif est <strong style="color:var(--text);">bénévole</strong>. Les primes indiquées sont des indemnités d'encouragement annuelles symboliques définies à l'article 20 des statuts. Le bureau ci-dessous reprend les postes prévus ; les noms seront mis à jour après l'élection.</span>
+  </div>
+
+  <div class="bureau-grid" id="bureau-grid">
+    <!-- Généré par JS -->
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2024 Dynamique Bapa de Libreville</span>
+      <span class="footer-devise">Pa 'a – Kuitchouè</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="nav-common.js"></script>
+<script>
+
+const MEMBRES = [
+  {
+    id: 1,
+    poste: "Président de la DBL",
+    photo: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "50 000F CFA/an",
+    statut: "Élu — mandat 2 ans renouvelable une fois",
+    attributions: [
+      "Représente le chef Bapa au sein de l'association.",
+      "Régulateur central des membres et garant des statuts et du règlement intérieur.",
+      "Représente la DBL auprès des institutions supérieures de la Communauté Camerounaise au Gabon (Hauts Plateaux, Région, Ambassade).",
+      "Ordonnateur principal des dépenses — aucune dépense n'est engagée sans son aval.",
+      "Veille à la bonne marche du Comité Central, du Bureau Exécutif et du Conseil de Discipline.",
+      "Peut recevoir délégation de l'AG pour prendre certaines décisions.",
+      "Dispose d'un pouvoir discrétionnaire pour les situations non prévues par les textes.",
+      "Peut révoquer un président de séance qui ne dirige pas conformément aux statuts."
+    ]
+  },
+  {
+    id: 2,
+    poste: "Vice-Président",
+    photo: "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "30 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assure l'intérim du Président en cas d'empêchement de courte durée (maladie ou autre motif).",
+      "En cas de vacance de pouvoir constatée — décès du Président ou absence prolongée d'au moins 6 mois — assure l'intérim jusqu'à la fin du mandat en cours.",
+      "Participe aux réunions du Bureau Exécutif et du Comité Central.",
+      "Soutient le Président dans toutes ses missions de représentation et de régulation."
+    ]
+  },
+  {
+    id: 3,
+    poste: "Secrétaire Général",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "30 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assure la régulation administrative de l'ensemble des affaires de la DBL.",
+      "Tient les documents officiels des réunions — procès-verbaux, rapports, correspondances.",
+      "Propose l'ordre du jour et nomme le président de séance pour chaque réunion.",
+      "Rédige et expédie les rapports ainsi que toute correspondance officielle de l'association.",
+      "Assure l'intérim en cas d'absence simultanée du Président et du Vice-Président.",
+      "Veille à l'application du statut général et du règlement intérieur."
+    ]
+  },
+  {
+    id: 4,
+    poste: "Secrétaire Général Adjoint",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "20 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assiste le Secrétaire Général dans l'ensemble de ses tâches administratives.",
+      "Remplace le Secrétaire Général en cas d'empêchement.",
+      "Participe à la tenue des archives et à la rédaction des documents officiels.",
+      "Assure la continuité administrative lors des réunions ordinaires et extraordinaires."
+    ]
+  },
+  {
+    id: 5,
+    poste: "Commissaire aux Comptes",
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "30 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Dirige la comptabilité générale de la DBL et vérifie la régularité de toutes les écritures.",
+      "Présente régulièrement un bilan détaillé de la situation financière et comptable à l'Assemblée Générale.",
+      "Tient les documents d'entrées et sorties pour l'ensemble des activités financières.",
+      "Contrôle les versements effectués par les trésoriers et vérifie la conformité des reçus bancaires.",
+      "Alertes le bureau en cas d'irrégularité ou d'anomalie dans la gestion des fonds."
+    ]
+  },
+  {
+    id: 6,
+    poste: "Commissaire aux Comptes Adjoint",
+    photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "20 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assiste le Commissaire aux Comptes dans toutes ses missions de contrôle comptable.",
+      "Remplace le Commissaire aux Comptes en cas d'empêchement.",
+      "Participe à la vérification des écritures comptables et des justificatifs financiers.",
+      "Contribue à l'élaboration des bilans financiers présentés à l'AG."
+    ]
+  },
+  {
+    id: 7,
+    poste: "Trésorier Général",
+    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "30 000F CFA/an",
+    statut: "Nommé — signataire bancaire de droit",
+    attributions: [
+      "Gère les revenus hors banques : tontines scolaire et annuelle.",
+      "Assure le versement des ressources financières sur le compte courant de la DBL contre présentation de reçus bancaires, dans un délai d'une semaine.",
+      "Est autorisé à conserver en caisse un maximum de 200 000F CFA pour la gestion rapide des affaires courantes.",
+      "Signataire de droit sur le compte bancaire de l'association — tout décaissement nécessite sa signature plus celle d'un second signataire désigné par l'AG.",
+      "Rend compte de sa gestion au Commissaire aux Comptes et à l'Assemblée Générale."
+    ]
+  },
+  {
+    id: 8,
+    poste: "Trésorier Adjoint",
+    photo: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "30 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "S'occupe exclusivement des revenus des banques lucratives (caisse mutuelle).",
+      "Peut être désigné signataire bancaire par l'Assemblée Générale.",
+      "Assiste le Trésorier Général et le remplace en cas d'empêchement.",
+      "Veille à la bonne tenue des opérations de crédit et de remboursement des prêts au sein de la caisse mutuelle."
+    ]
+  },
+  {
+    id: 9,
+    poste: "Censeur",
+    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "20 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Veille au maintien rigoureux de la discipline pendant les séances de réunion ordinaires et extraordinaires ainsi que lors de toutes délégations externes.",
+      "Applique les sanctions prévues au règlement intérieur (retards, troubles, absences, infractions aux tontines).",
+      "Est placé sous l'autorité du président de séance pour toute intervention disciplinaire.",
+      "Préside le Conseil de Discipline ou y participe comme membre principal.",
+      "Reçoit et instruit les plaintes déposées entre membres, après paiement de la caution de 10 000F CFA par chaque partie."
+    ]
+  },
+  {
+    id: 10,
+    poste: "Censeur Adjoint",
+    photo: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "10 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assiste le Censeur dans toutes ses missions de maintien de l'ordre et de discipline.",
+      "Remplace le Censeur en cas d'empêchement lors des séances.",
+      "Participe aux procédures disciplinaires et au Conseil de Discipline.",
+      "Note les infractions et manquements constatés pour rapport au Censeur."
+    ]
+  },
+  {
+    id: 11,
+    poste: "Conseiller Juridique",
+    photo: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "Poste bénévole",
+    statut: "Nommé en raison de ses compétences",
+    attributions: [
+      "Apporte son expertise juridique pour conseiller l'association dans ses décisions et engagements.",
+      "Vérifie la conformité des actes de l'association avec la législation gabonaise relative aux associations (loi 35/62 du 10 décembre 1962).",
+      "Rédige ou valide les courriers et actes officiels à portée juridique.",
+      "Conseille le bureau en cas de litige impliquant un tiers ou une institution.",
+      "Participe aux réunions du Comité Central en qualité de membre consultatif."
+    ]
+  },
+  {
+    id: 12,
+    poste: "Chargé Culturel & Protocole",
+    photo: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=400&h=520",
+    prime: "20 000F CFA/an",
+    statut: "Nommé par le bureau",
+    attributions: [
+      "Assure l'ordre protocolaire lors des séances de réunion et des manifestations d'envergure.",
+      "Responsable de l'achat, de la gestion et de la distribution des boissons et rafraîchissements lors des séances.",
+      "Organise l'accueil des membres et des invités lors des événements officiels de la DBL.",
+      "Veille au respect des traditions et des coutumes Bapa lors des cérémonies de l'association.",
+      "Coordonne la mise en place logistique des événements (voir bébé, mariages, veillées, cassation des banques)."
+    ]
+  }
+];
+
+function renderBureau() {
+  const grid = document.getElementById('bureau-grid');
+  MEMBRES.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'membre-card';
+    card.setAttribute('data-aos', 'fade-up');
+    card.setAttribute('data-aos-delay', String((i % 4) * 60));
+    card.innerHTML = `
+      <div style="overflow:hidden;">
+        <img src="${m.photo}" alt="${m.poste}" loading="lazy"/>
+      </div>
+      <div class="membre-card-foot">
+        <div class="poste">${m.poste}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(m));
+    grid.appendChild(card);
+  });
+}
+
+function openModal(m) {
+  document.getElementById('bm-photo').src = m.photo;
+  document.getElementById('bm-photo').alt = m.poste;
+  document.getElementById('bm-poste-tag').textContent = m.poste;
+  document.getElementById('bm-nom').textContent = m.poste;
+  document.getElementById('bm-sous').textContent = m.statut;
+  const body = document.getElementById('bm-body');
+  const items = m.attributions.map(a => `<li>${a}</li>`).join('');
+  const prime = m.prime !== 'Poste bénévole'
+    ? `<div class="prime-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg> Prime d'encouragement annuelle : <strong>${m.prime}</strong></div>`
+    : `<div class="prime-badge" style="background:var(--bg2);color:var(--muted);border-color:var(--border);">Poste entièrement bénévole — sans prime fixe définie dans les statuts</div>`;
+  body.innerHTML = `
+    <div class="bureau-modal-section">
+      <h4>Attributions officielles</h4>
+      <ul>${items}</ul>
+    </div>
+    ${prime}
+  `;
+  document.getElementById('bureau-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('bureau-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('bm-close').addEventListener('click', closeModal);
+document.getElementById('bureau-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('bureau-modal')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+renderBureau();
+initNav('bureau');
+AOS.init({ once: true, offset: 50, duration: 650 });
+</script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statuts &amp; Règlement Intérieur — DBL</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script>(function(){ document.documentElement.setAttribute('data-theme', localStorage.getItem('dbl-theme')||'light'); })();</script>
+</head>
+<body>
+<main>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Documents officiels</span>
+    <div class="divider" style="margin:10px auto 18px;"></div>
+    <h1>Statuts &amp; Règlement Intérieur</h1>
+    <p>Textes fondateurs adoptés par l'Assemblée Générale en 2024. Sélectionnez une section dans le menu pour en consulter le contenu.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:36px;">
+  <div class="statuts-layout">
+
+    <!-- SIDEBAR -->
+    <nav class="statuts-nav">
+      <span class="snav-label">Statuts fondamentaux</span>
+      <button class="snav-btn active" onclick="showSection('preambule')">Préambule</button>
+      <button class="snav-btn" onclick="showSection('titre1')">Titre I — Dénomination &amp; Objectifs</button>
+      <button class="snav-btn" onclick="showSection('titre2')">Titre II — Membres &amp; Qualité</button>
+      <button class="snav-btn" onclick="showSection('titre3')">Titre III — Régime Électoral</button>
+      <button class="snav-btn" onclick="showSection('titre4')">Titre IV — Organes &amp; Attributions</button>
+      <button class="snav-btn" onclick="showSection('titre56')">Titre V &amp; VI — Finances &amp; Primes</button>
+
+      <span class="snav-label" style="margin-top:10px;">Règlement Intérieur</span>
+      <button class="snav-btn" onclick="showSection('ri-ressources')">RI I &amp; II — Ressources financières</button>
+      <button class="snav-btn" onclick="showSection('ri-tontines')">RI IV — Tontines &amp; Prêts</button>
+      <button class="snav-btn" onclick="showSection('ri-avaliste')">RI V — Avaliste &amp; Défaillances</button>
+      <button class="snav-btn" onclick="showSection('ri-aides')">Art. 8–13 — Grille des aides</button>
+      <button class="snav-btn" onclick="showSection('ri-sanctions')">Art. 14–15 — Sanctions &amp; Présence</button>
+    </nav>
+
+    <!-- VIEWER -->
+    <div class="statuts-viewer" id="viewer"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2024 Dynamique Bapa de Libreville — Statuts approuvés par l'AG 2024</span>
+      <span class="footer-devise">Pa 'a – Kuitchouè</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="nav-common.js"></script>
+<script>
+const SECTIONS = {
+
+preambule: `
+<h2 class="sv-title">Préambule</h2>
+<span class="sv-sub">Cadre légal et fondement de l'association · 2024</span>
+<div class="sv-art">
+  <p>Conformément à l'article 21 de la loi 35/62 du 10 décembre 1962 relative aux associations en terre gabonaise, et dans le souci de faire développer l'entraide et la solidarité entre les membres fils et filles BAPA, en particulier ceux de Libreville ainsi que les sympathisants sans distinction de sexe, de nationalité et de religion, il est proclamé les présents statuts pour fonder une association appelée <strong>Dynamique Bapa de Libreville (DBL)</strong>.</p>
+  <div class="sv-highlight" style="margin-top:18px;">Ce statut et règlement intérieur de la DBL adoptés en <strong>2024</strong> ont été approuvés par son Assemblée Générale.</div>
+</div>
+`,
+
+titre1: `
+<h2 class="sv-title">Titre I — Dénomination, Devise, Objectifs, Siège</h2>
+<span class="sv-sub">Articles 1 à 4</span>
+<div class="sv-art">
+  <h4>Article 1 · La Création</h4>
+  <p>Il a été créé à Libreville au Gabon une association dénommée <strong>« Dynamique Bapa de Libreville (DBL) »</strong>.</p>
+</div>
+<div class="sv-art">
+  <h4>Article 2 · La Devise</h4>
+  <p>Le slogan de la DBL est <strong>« Pa 'a – Kuitchouè »</strong> qui signifie <em>Bapa – Uni</em>. Tout adhérent doit prononcer ce slogan à son entrée à chaque séance de réunion.</p>
+  <div class="sv-highlight">Devise officielle : <strong>Union · Fraternité · Amour</strong></div>
+</div>
+<div class="sv-art">
+  <h4>Article 3 · Le Siège</h4>
+  <p>Provisoirement, la DBL siège chez M. KAMOGNE Boniface au quartier PK11, Libreville. Il peut être déplacé à la majorité des deux tiers (2/3) des membres présents à l'Assemblée Générale.</p>
+</div>
+<div class="sv-art">
+  <h4>Article 4 · Les Objectifs</h4>
+  <p>La DBL est une association apolitique et à but non lucratif. Ses principaux objectifs :</p>
+  <ul>
+    <li>Développer entre les membres des relations familiales fondées sur le respect et la confiance.</li>
+    <li>Régler les différends de toutes natures pouvant opposer les membres.</li>
+    <li>Développer l'entraide ainsi que la réflexion sur les problèmes liés au développement de la DBL et du village Bapa.</li>
+    <li>Lutter contre les fléaux tels que l'hypocrisie, la calomnie et la malhonnêteté au sein de la DBL.</li>
+  </ul>
+</div>
+`,
+
+titre2: `
+<h2 class="sv-title">Titre II — Durée &amp; Qualité de Membre</h2>
+<span class="sv-sub">Articles 5 à 7</span>
+<div class="sv-art">
+  <h4>Article 5 · Durée de vie</h4>
+  <div class="sv-highlight">La DBL a une durée de vie de <strong>99 ans</strong>.</div>
+</div>
+<div class="sv-art">
+  <h4>Article 6 · La qualité des membres</h4>
+  <ul>
+    <li>Peut être membre tout ressortissant du village Bapa.</li>
+    <li>L'adhésion peut être étendue à tout sympathisant parrainé par un ressortissant Bapa résidant au Gabon, qui accepte de se soumettre aux dispositions du présent statut.</li>
+    <li>L'appréciation de toute demande d'adhésion est laissée à la discrétion du Bureau Exécutif.</li>
+    <li>À l'inscription : fournir au moins deux numéros de contacts au Cameroun, son statut matrimonial et sa filiation.</li>
+    <li>Tout membre doit être inscrit dans la tontine de présence.</li>
+    <li>Tout adhérent doit accepter et respecter les statuts et le règlement intérieur.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 7 · Perte de la qualité de membre</h4>
+  <p>La qualité de membre est perdue en cas de <strong>décès</strong>, <strong>démission</strong> (lettre de démission + copie pièce d'identité pour les résidents hors Libreville) ou <strong>exclusion</strong>.</p>
+  <div class="sv-highlight">La perte de la qualité de membre <strong>n'entraîne pas</strong> le remboursement des fonds d'aide.</div>
+</div>
+`,
+
+titre3: `
+<h2 class="sv-title">Titre III — Élections au sein de la DBL</h2>
+<span class="sv-sub">Articles 8 à 13</span>
+<div class="sv-art">
+  <h4>Article 8 · Poste électif</h4>
+  <p>Le seul poste électif est celui de <strong>Président</strong>. Il est élu au suffrage universel direct et secret à la majorité absolue de 50% + 1 voix. En cas de majorité relative, un second tour est organisé.</p>
+</div>
+<div class="sv-art">
+  <h4>Article 9 · Mandat</h4>
+  <div class="sv-highlight">Le mandat du Président est de <strong>2 ans, renouvelable une fois</strong>.</div>
+</div>
+<div class="sv-art">
+  <h4>Article 10 · Conditions d'éligibilité</h4>
+  <ul>
+    <li>Être fils ou fille Bapa résident à Libreville, de nationalité camerounaise.</li>
+    <li>Être inscrit au sein de la DBL et en situation régulière sur le territoire gabonais.</li>
+    <li>Avoir une bonne moralité reconnue au sein de la DBL.</li>
+    <li>Déposer une caution de <strong>50 000F CFA</strong> (non remboursable) servant à l'organisation des élections.</li>
+    <li>Aller au village au moins une fois par an.</li>
+    <li>Être marié(e) et posséder une résidence fixe.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 11 · Commission Électorale</h4>
+  <p>L'AG crée une commission de 4 membres (Président, Secrétaire, Trésorier, Conseiller) chargée du calendrier électoral, de l'enregistrement des candidatures, de la supervision du vote et de la proclamation des résultats.</p>
+</div>
+<div class="sv-art">
+  <h4>Articles 12 &amp; 13 · Corps et liste électoraux</h4>
+  <p>Le corps électoral est composé de tous les adhérents inscrits. La liste électorale complète doit être rendue publique et affichée au siège une semaine avant le jour des élections.</p>
+</div>
+`,
+
+titre4: `
+<h2 class="sv-title">Titre IV — Les Organes &amp; leurs Attributions</h2>
+<span class="sv-sub">Articles 14 à 16</span>
+<div class="sv-art">
+  <h4>Article 14 · Les cinq organes de la DBL</h4>
+  <ul>
+    <li>L'Assemblée Générale</li>
+    <li>Le Comité Central</li>
+    <li>Le Bureau Exécutif</li>
+    <li>Le Conseil de Discipline</li>
+    <li>La Réunion des Femmes</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16a · Le Président de la DBL</h4>
+  <ul>
+    <li>Représente le chef Bapa au sein de l'association.</li>
+    <li>Garant des statuts et règlement intérieur, veille à leur bonne application.</li>
+    <li>Représente la DBL auprès des institutions supérieures (Hauts Plateaux, Région, Ambassade).</li>
+    <li>Ordonnateur principal des dépenses.</li>
+    <li>Peut révoquer un président de séance qui ne dirige pas conformément aux textes.</li>
+    <li>Dispose d'un pouvoir discrétionnaire.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16b · Le Vice-Président</h4>
+  <ul>
+    <li>Assure l'intérim du Président en cas d'empêchement de courte durée.</li>
+    <li>En cas de vacance (décès ou absence ≥ 6 mois), assure l'intérim jusqu'à la fin du mandat.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16c · Le Secrétaire Général</h4>
+  <ul>
+    <li>Assure la régulation administrative — tient les documents, propose l'ordre du jour, nomme le président de séance.</li>
+    <li>Assure l'intérim en cas d'absence simultanée du Président et du Vice-Président.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16e · Le Commissaire aux Comptes</h4>
+  <ul>
+    <li>Dirige la comptabilité et vérifie la régularité des écritures.</li>
+    <li>Présente régulièrement un bilan détaillé de la situation financière.</li>
+    <li>Tient les documents d'entrées et sorties des activités financières.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16f · Les Trésoriers</h4>
+  <ul>
+    <li><strong>Trésorier Général</strong> : revenus hors banques (tontines scolaire et annuelle), garde en caisse max. 200 000F CFA.</li>
+    <li><strong>Trésorier Adjoint</strong> : revenus des banques lucratives uniquement.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16g · Le Censeur</h4>
+  <ul>
+    <li>Veille au maintien de la discipline pendant les séances et délégations.</li>
+    <li>Applique les sanctions conformément au règlement intérieur.</li>
+    <li>Placé sous l'autorité du président de séance.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 16h · Le Chargé du Protocole</h4>
+  <ul>
+    <li>Assure l'ordre protocolaire dans les séances et manifestations.</li>
+    <li>Chargé de l'achat et distribution des boissons, de l'accueil des membres et invités.</li>
+  </ul>
+</div>
+`,
+
+titre56: `
+<h2 class="sv-title">Titres V &amp; VI — Activités Financières &amp; Traitements</h2>
+<span class="sv-sub">Articles 17 à 20</span>
+<div class="sv-art">
+  <h4>Article 17 · Activités financières</h4>
+  <ul>
+    <li>La tontine de présence (obligatoire pour tous).</li>
+    <li>Les tontines facultatives (hebdomadaires et mensuelles).</li>
+    <li>Une caisse mutuelle : banque annuelle et banque scolaire.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Article 18 · Fond d'entraide et de solidarité</h4>
+  <p>Assistance financière accordée en cas de : maladie, décès (père, mère, enfants, conjoint), mariage, naissance.</p>
+</div>
+<div class="sv-art">
+  <h4>Article 19 · Traitement du Président</h4>
+  <div class="sv-highlight">Indemnité annuelle symbolique de transport : <strong>50 000F CFA</strong>.</div>
+</div>
+<div class="sv-art">
+  <h4>Article 20 · Primes d'encouragement annuelles</h4>
+  <table class="sv-table">
+    <thead><tr><th>Poste</th><th>Prime annuelle</th></tr></thead>
+    <tbody>
+      <tr><td>Vice-Président</td><td class="sv-amount">30 000F</td></tr>
+      <tr><td>Secrétaire Général</td><td class="sv-amount">30 000F</td></tr>
+      <tr><td>Secrétaire Général Adjoint</td><td class="sv-amount">20 000F</td></tr>
+      <tr><td>Commissaire aux Comptes</td><td class="sv-amount">30 000F</td></tr>
+      <tr><td>Commissaire aux Comptes Adjoint</td><td class="sv-amount">20 000F</td></tr>
+      <tr><td>Trésorier Général</td><td class="sv-amount">30 000F</td></tr>
+      <tr><td>Trésorier Adjoint</td><td class="sv-amount">30 000F</td></tr>
+      <tr><td>Censeur</td><td class="sv-amount">20 000F</td></tr>
+      <tr><td>Censeur Adjoint</td><td class="sv-amount">10 000F</td></tr>
+      <tr><td>Chargé Culturel &amp; Protocole</td><td class="sv-amount">20 000F</td></tr>
+    </tbody>
+  </table>
+</div>
+`,
+
+'ri-ressources': `
+<h2 class="sv-title">RI — Ressources Financières</h2>
+<span class="sv-sub">Règlement Intérieur · Titres I &amp; II · Articles 1 à 4</span>
+<div class="sv-art">
+  <h4>Article 2 · Constitution des ressources</h4>
+  <p><strong>Ressources permanentes :</strong></p>
+  <div class="sv-highlight">Fond d'aide et de solidarité : <strong>150 000F CFA par membre</strong>. À reconstituer dans un délai de 3 mois par collecte directe ou tontine au sein de la DBL.</div>
+  <p style="margin-top:12px;">La reconstitution est calculée en divisant le montant par le nombre d'adhérents concernés ; elle est défalquée du fond de chaque membre après exactement 1 mois.</p>
+  <p style="margin-top:10px;"><strong>Ressources occasionnelles :</strong> dons financiers, sanctions diverses, sommes reçues lors des manifestations heureuses ou malheureuses.</p>
+</div>
+<div class="sv-art">
+  <h4>Article 3 · La Trésorerie</h4>
+  <p>La DBL dispose d'un compte courant bancaire. Les trésoriers versent les ressources dans un délai d'une semaine contre présentation de reçus.</p>
+  <div class="sv-highlight">Le Trésorier Général peut conserver en caisse au maximum <strong>200 000F CFA</strong> pour les affaires courantes.</div>
+</div>
+<div class="sv-art">
+  <h4>Décaissements bancaires</h4>
+  <p>L'AG désigne <strong>3 signataires</strong>. Deux d'entre eux (dont le Président, signataire de droit) sont requis pour tout décaissement. Les deux autres sont désignés par l'AG selon leur moralité et disponibilité.</p>
+</div>
+`,
+
+'ri-tontines': `
+<h2 class="sv-title">RI — Tontines &amp; Conditions de Prêt</h2>
+<span class="sv-sub">Règlement Intérieur · Titre IV · Article 5</span>
+<div class="sv-art">
+  <h4>Tableau des tontines</h4>
+  <table class="sv-table">
+    <thead><tr><th>Type</th><th>Mise</th><th>Fréquence</th><th>Caractère</th></tr></thead>
+    <tbody>
+      <tr><td>Tontine de présence</td><td class="sv-amount">2 000F + 1 000F collation</td><td>Chaque réunion</td><td>Obligatoire</td></tr>
+      <tr><td>Tontine hebdomadaire</td><td class="sv-amount">5 000F ou 10 000F</td><td>Hebdomadaire</td><td>Facultatif</td></tr>
+      <tr><td>Tontine mensuelle</td><td class="sv-amount">50 000F ou 100 000F</td><td>Mensuelle</td><td>Facultatif</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:10px;font-size:13px;color:var(--muted);">En début de chaque tontine, un tirage au sort établit l'ordre des bénéficiaires. Chaque bénéficiaire doit présenter un avaliste.</p>
+</div>
+<div class="sv-art">
+  <h4>Conditions de prêt à la banque</h4>
+  <ul>
+    <li>Être adhérent régulier avec fond d'aide complet.</li>
+    <li>Être épargnant actif à la banque.</li>
+    <li>Ne pas avoir avalisé quelqu'un dans une banque en cours.</li>
+    <li>Avoir cotisé au moins le montant sollicité.</li>
+    <li>Si le prêt dépasse la mise : présenter un avaliste solvable dont la mise combinée couvre au moins la moitié du prêt, ou une tontine non bénéficiée de valeur équivalente.</li>
+  </ul>
+</div>
+<div class="sv-art">
+  <h4>Reconduite et défaillance</h4>
+  <ul>
+    <li>Si les intérêts sont payés à l'échéance : reconduction pour 2 mois au même taux.</li>
+    <li>En cas de défaillance : reconduction tacite (capital + intérêts cumulés) pour 1 mois au même taux, renouvelée jusqu'au remboursement total.</li>
+    <li>Toute tontine cotisée par le défaillant est saisie automatiquement pour remboursement.</li>
+    <li>Les mouvements de prêts s'arrêtent 2 mois avant la cassation de chaque banque.</li>
+  </ul>
+</div>
+`,
+
+'ri-avaliste': `
+<h2 class="sv-title">RI — L'Avaliste &amp; les Défaillances</h2>
+<span class="sv-sub">Règlement Intérieur · Titre V · Articles 6 &amp; 7</span>
+<div class="sv-art">
+  <h4>Article 6 · L'avaliste</h4>
+  <p>Ne peut être avaliste qu'un cotisant ayant le <strong>fond d'aide complet</strong>. Un avaliste ne peut avaliser plus de <strong>2 personnes</strong> simultanément.</p>
+  <div class="sv-highlight">L'avaliste est solidairement responsable des défaillances de tontine et du non-remboursement des sommes empruntées par la personne qu'il a avalisée.</div>
+</div>
+<div class="sv-art">
+  <h4>Article 7 · Barème des amendes par défaillance</h4>
+  <table class="sv-table">
+    <thead><tr><th>Tontine</th><th>Amende non-bénéficiaire</th><th>Amende bénéficiaire</th></tr></thead>
+    <tbody>
+      <tr><td>Présence</td><td class="sv-amount">1 000F</td><td class="sv-amount">1 000F</td></tr>
+      <tr><td>10 000F</td><td class="sv-amount">2 500F</td><td class="sv-amount">5 000F</td></tr>
+      <tr><td>5 000F</td><td class="sv-amount">1 250F</td><td class="sv-amount">2 500F</td></tr>
+      <tr><td>50 000F</td><td class="sv-amount">12 500F</td><td class="sv-amount">25 000F</td></tr>
+      <tr><td>100 000F</td><td class="sv-amount">25 000F</td><td class="sv-amount">50 000F</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:10px;font-size:13px;color:var(--muted);">3 défaillances consécutives d'un non-bénéficiaire entraînent son exclusion d'office de la tontine jusqu'à la fin du cycle. Il perçoit à la fin les sommes déjà cotisées, après paiement de toutes les pénalités.</p>
+</div>
+`,
+
+'ri-aides': `
+<h2 class="sv-title">RI — Grille Officielle des Aides</h2>
+<span class="sv-sub">Règlement Intérieur · Articles 8 à 13</span>
+<div class="sv-art">
+  <h4>Condition générale (Article 10)</h4>
+  <p>Un membre ne peut bénéficier d'une aide que s'il est <strong>en règle</strong> : fond d'aide complet avant la survenue de l'événement et inscription active dans la tontine de présence.</p>
+</div>
+<div class="sv-art">
+  <h4>Aides aux événements malheureux</h4>
+  <table class="sv-table">
+    <thead><tr><th>Événement</th><th>Montant total</th><th>Ventilation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Décès d'un adhérent</td>
+        <td class="sv-amount">1 050 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">600 000F famille · 50 000F veillée (2 jours) · 400 000F transport 2 délégués au Cameroun</td>
+      </tr>
+      <tr>
+        <td>Décès du père ou de la mère</td>
+        <td class="sv-amount">600 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">500 000F voyage Cameroun · 100 000F collation veillée. Accordé une seule fois dans la vie.</td>
+      </tr>
+      <tr>
+        <td>Décès d'un enfant (Gabon)</td>
+        <td class="sv-amount">250 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">200 000F cercueil · 50 000F veillée</td>
+      </tr>
+      <tr>
+        <td>Décès d'un enfant (hors Gabon)</td>
+        <td class="sv-amount">300 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">250 000F cercueil · 50 000F veillée</td>
+      </tr>
+      <tr>
+        <td>Hospitalisation (3 jours)</td>
+        <td class="sv-amount">150 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Hôpitaux publics ou cliniques agréées CNAMGS uniquement</td>
+      </tr>
+      <tr>
+        <td>Hospitalisation (≥ 8 jours)</td>
+        <td class="sv-amount">250 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Même condition d'établissement</td>
+      </tr>
+      <tr>
+        <td>Césarienne</td>
+        <td class="sv-amount">150 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Forfait unique</td>
+      </tr>
+      <tr>
+        <td>Maladie hors Libreville</td>
+        <td class="sv-amount">100 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Opération chirurgicale ou accident uniquement</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="sv-art" style="margin-top:20px;">
+  <h4>Aides aux événements joyeux</h4>
+  <table class="sv-table">
+    <thead><tr><th>Événement</th><th>Aide DBL</th><th>Conditions et obligations</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Naissance (voir bébé)</td>
+        <td class="sv-amount">150 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Obligation de recevoir la réunion dans les 7 jours. Chaque adhérent apporte un cadeau (min. 3 000F) + participation obligatoire de 5 000F.</td>
+      </tr>
+      <tr>
+        <td>Mariage</td>
+        <td class="sv-amount">250 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">+ collecte obligatoire de 10 000F par adhérent.</td>
+      </tr>
+      <tr>
+        <td>Événements exceptionnels</td>
+        <td class="sv-amount">50 000F</td>
+        <td style="font-size:12.5px;color:var(--muted);">Anniversaire, installation du bureau, sortie officielle d'un notable. Doit être approuvé par l'AG.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="sv-art" style="margin-top:20px;">
+  <h4>Horaires des veillées</h4>
+  <ul>
+    <li>Veillée ordinaire (père, mère, enfant) : de 21h à minuit avec appel des membres.</li>
+    <li>Veillée pour décès d'un adhérent : de 22h à 5h du matin avec appel des membres.</li>
+  </ul>
+</div>
+`,
+
+'ri-sanctions': `
+<h2 class="sv-title">RI — Sanctions &amp; Présence aux Réunions</h2>
+<span class="sv-sub">Règlement Intérieur · Articles 14 &amp; 15</span>
+<div class="sv-art">
+  <h4>Article 14 · Barème des sanctions en séance</h4>
+  <table class="sv-table">
+    <thead><tr><th>Infraction</th><th>Sanction</th></tr></thead>
+    <tbody>
+      <tr><td>Retard (après 30 min) — payé à l'entrée</td><td class="sv-amount">500F</td></tr>
+      <tr><td>Retard non payé à l'entrée (constaté en salle)</td><td class="sv-amount">1 000F (doublé)</td></tr>
+      <tr><td>Retard tontine (après 3 lectures)</td><td class="sv-amount">500F par cahier</td></tr>
+      <tr><td>Feuille de tontine arrachée</td><td class="sv-amount">1 500F</td></tr>
+      <tr><td>Réouverture d'un cahier soldé</td><td class="sv-amount">1 000F</td></tr>
+      <tr><td>Trouble en séance</td><td class="sv-amount">200F</td></tr>
+      <tr><td>Trouble excessif</td><td class="sv-amount">Appréciation de l'AG</td></tr>
+      <tr><td>Prise de parole sans permission</td><td class="sv-amount">200F</td></tr>
+      <tr><td>Couper la parole</td><td class="sv-amount">200F</td></tr>
+      <tr><td>Injures ou bagarre</td><td class="sv-amount">Appréciation de l'AG</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="sv-art" style="margin-top:18px;">
+  <h4>Sanctions lors des veillées</h4>
+  <table class="sv-table">
+    <thead><tr><th>Infraction</th><th>Sanction</th></tr></thead>
+    <tbody>
+      <tr><td>Retard de 30 min</td><td class="sv-amount">500F</td></tr>
+      <tr><td>Retard de 1h</td><td class="sv-amount">1 000F</td></tr>
+      <tr><td>Abandon de veillée</td><td class="sv-amount">2 000F</td></tr>
+      <tr><td>Absence à la veillée</td><td class="sv-amount">15 000F</td></tr>
+      <tr><td>Non-participation à l'animation</td><td class="sv-amount">5 000F</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="sv-art" style="margin-top:18px;">
+  <h4>Article 15 · Présence aux réunions</h4>
+  <ul>
+    <li>Tout membre doit participer à <strong>au moins 1 séance sur 2</strong>.</li>
+    <li>Pour les couples mariés : un élément peut représenter l'autre, mais chacun doit participer à au moins 1 séance par mois.</li>
+    <li>Justifications acceptées : maladie ou déplacement uniquement.</li>
+    <li>Absence non justifiée : <strong>1 000F CFA</strong>.</li>
+    <li>Deux absences consécutives non justifiées : <strong>2 500F CFA</strong>.</li>
+    <li>Absence à la séance post-comité : <strong>2 000F CFA</strong>.</li>
+  </ul>
+</div>
+`
+};
+
+function showSection(key) {
+  const viewer = document.getElementById('viewer');
+  viewer.style.opacity = '0';
+  setTimeout(() => {
+    viewer.innerHTML = SECTIONS[key] || '<p>Section introuvable.</p>';
+    viewer.style.opacity = '1';
+    viewer.scrollTop = 0;
+  }, 160);
+  document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.snav-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + key + "'")) b.classList.add('active');
+  });
+}
+
+document.getElementById('viewer').style.transition = 'opacity .18s';
+showSection('preambule');
+initNav('statuts');
+AOS.init({ once: true, offset: 50, duration: 650 });
+</script>
+</body>
+</html>
