@@ -41,7 +41,7 @@
   <!-- Note bénévole -->
   <div style="padding:16px 20px;border-radius:12px;background:var(--surface2,var(--bg2));border:1px solid var(--border2);margin-bottom:44px;display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--muted);" data-aos="fade-up">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;color:var(--green);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span>Le travail des membres du Bureau Exécutif est <strong style="color:var(--text);">bénévole</strong>. Les primes indiquées sont des indemnités d'encouragement annuelles symboliques définies à l'article 20 des statuts. Le bureau ci-dessous reprend les postes prévus ; les noms seront mis à jour après l'élection.</span>
+    <span>Le travail des membres du Bureau Exécutif est <strong style="color:var(--text);">bénévole</strong>. Le bureau ci-dessous reprend les postes prévus ; les noms seront mis à jour après l'élection.</span>
   </div>
 
   <div class="bureau-grid" id="bureau-grid">
@@ -54,7 +54,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-bottom" style="border-top:none;padding-top:0;">
-      <span>© 2024 Dynamique Bapa de Libreville</span>
+      <span>© 2026 Dynamique Bapa de Libreville</span>
       <span class="footer-devise">Pa 'a – Kuitchouè</span>
     </div>
   </div>
@@ -69,7 +69,6 @@ const MEMBRES = [
     id: 1,
     poste: "Président de la DBL",
     photo: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "50 000F CFA/an",
     statut: "Élu — mandat 2 ans renouvelable une fois",
     attributions: [
       "Représente le chef Bapa au sein de l'association.",
@@ -86,7 +85,6 @@ const MEMBRES = [
     id: 2,
     poste: "Vice-Président",
     photo: "https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "30 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assure l'intérim du Président en cas d'empêchement de courte durée (maladie ou autre motif).",
@@ -99,7 +97,6 @@ const MEMBRES = [
     id: 3,
     poste: "Secrétaire Général",
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "30 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assure la régulation administrative de l'ensemble des affaires de la DBL.",
@@ -114,7 +111,6 @@ const MEMBRES = [
     id: 4,
     poste: "Secrétaire Général Adjoint",
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "20 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assiste le Secrétaire Général dans l'ensemble de ses tâches administratives.",
@@ -127,7 +123,6 @@ const MEMBRES = [
     id: 5,
     poste: "Commissaire aux Comptes",
     photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "30 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Dirige la comptabilité générale de la DBL et vérifie la régularité de toutes les écritures.",
@@ -141,7 +136,6 @@ const MEMBRES = [
     id: 6,
     poste: "Commissaire aux Comptes Adjoint",
     photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "20 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assiste le Commissaire aux Comptes dans toutes ses missions de contrôle comptable.",
@@ -154,7 +148,6 @@ const MEMBRES = [
     id: 7,
     poste: "Trésorier Général",
     photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "30 000F CFA/an",
     statut: "Nommé — signataire bancaire de droit",
     attributions: [
       "Gère les revenus hors banques : tontines scolaire et annuelle.",
@@ -168,7 +161,6 @@ const MEMBRES = [
     id: 8,
     poste: "Trésorier Adjoint",
     photo: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "30 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "S'occupe exclusivement des revenus des banques lucratives (caisse mutuelle).",
@@ -181,7 +173,6 @@ const MEMBRES = [
     id: 9,
     poste: "Censeur",
     photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "20 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Veille au maintien rigoureux de la discipline pendant les séances de réunion ordinaires et extraordinaires ainsi que lors de toutes délégations externes.",
@@ -195,7 +186,6 @@ const MEMBRES = [
     id: 10,
     poste: "Censeur Adjoint",
     photo: "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "10 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assiste le Censeur dans toutes ses missions de maintien de l'ordre et de discipline.",
@@ -208,7 +198,6 @@ const MEMBRES = [
     id: 11,
     poste: "Conseiller Juridique",
     photo: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "Poste bénévole",
     statut: "Nommé en raison de ses compétences",
     attributions: [
       "Apporte son expertise juridique pour conseiller l'association dans ses décisions et engagements.",
@@ -222,7 +211,6 @@ const MEMBRES = [
     id: 12,
     poste: "Chargé Culturel & Protocole",
     photo: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=400&h=520",
-    prime: "20 000F CFA/an",
     statut: "Nommé par le bureau",
     attributions: [
       "Assure l'ordre protocolaire lors des séances de réunion et des manifestations d'envergure.",
@@ -262,15 +250,11 @@ function openModal(m) {
   document.getElementById('bm-sous').textContent = m.statut;
   const body = document.getElementById('bm-body');
   const items = m.attributions.map(a => `<li>${a}</li>`).join('');
-  const prime = m.prime !== 'Poste bénévole'
-    ? `<div class="prime-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg> Prime d'encouragement annuelle : <strong>${m.prime}</strong></div>`
-    : `<div class="prime-badge" style="background:var(--bg2);color:var(--muted);border-color:var(--border);">Poste entièrement bénévole — sans prime fixe définie dans les statuts</div>`;
   body.innerHTML = `
     <div class="bureau-modal-section">
       <h4>Attributions officielles</h4>
       <ul>${items}</ul>
     </div>
-    ${prime}
   `;
   document.getElementById('bureau-modal').classList.add('open');
   document.body.style.overflow = 'hidden';

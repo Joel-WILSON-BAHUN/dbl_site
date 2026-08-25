@@ -34,10 +34,11 @@
   --glass-bg:    rgba(255,255,255,0.70);
   --glass-border:rgba(0,0,0,0.08);
   --modal-overlay: rgba(0,0,0,0.45);
-  /* drapeau (toujours affiché sur fond sombre dans le hero) */
+  /* drapeaux (toujours affichés sur fond sombre dans le hero) */
   --flag-green:  #1f8a5c;
   --flag-red:    #c8312a;
   --flag-gold:   #f2b400;
+  --flag-blue:   #3a75c4;
 }
 
 /* ===========================
@@ -680,22 +681,27 @@ img { display: block; max-width: 100%; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===========================
-   FLAG CHIP (drapeau camerounais stylisé)
+   FLAG CHIPS (drapeaux Cameroun & Gabon)
    =========================== */
 .eyebrow-hero { display: flex; align-items: center; }
+.flag-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
 .flag-chip {
-  display: flex;
-  width: 26px;
+  display: block;
   height: 16px;
   border-radius: 3px;
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 0 0 1px rgba(255,255,255,.3), 0 1px 3px rgba(0,0,0,.4);
 }
-.flag-chip span { display: block; }
-.flag-chip .fs-green { flex: 0.75; background: var(--flag-green); }
-.flag-chip .fs-red   { flex: 0.95; background: var(--flag-red); }
-.flag-chip .fs-gold  { flex: 1.6;  background: var(--flag-gold); }
+/* Cameroun : proportions officielles 2:3 */
+.flag-chip--cm { width: 24px; }
+/* Gabon : proportions officielles 3:4 */
+.flag-chip--ga { width: 21.33px; }
 
 /* ===========================
    STATS BAR
