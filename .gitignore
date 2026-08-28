@@ -1,0 +1,28 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs et environnements locaux
+.vscode/
+.idea/
+
+# Dépendances et fichiers générés JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sorties de build et couvertures de tests
+dist/
+build/
+coverage/
+
+# Fichiers locaux et secrets
+*.local
+.env
+.env.*
+!.env.example
+MODIFICATIONS.md
+images/fondateurs/LISEZ-MOI.txt
