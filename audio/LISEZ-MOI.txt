@@ -1,0 +1,39 @@
+DOSSIER AUDIO — CHANTS DE LA DBL
+=================================
+
+Déposez ici les enregistrements des chants, au format MP3.
+Les noms de fichiers doivent correspondre EXACTEMENT à la liste
+ci-dessous (tout en minuscules, sans accent, sans espace) :
+
+  hymne-bapa.mp3            -> Hymne BAPA
+  pa-a-kuitchoue.mp3        -> Pa 'a – Kuitchouè (chant d'ouverture)
+  chant-bienvenue.mp3       -> Chant de bienvenue
+  chant-village-bapa.mp3    -> Chant du village Bapa
+  chant-veillee.mp3         -> Chant de veillée (deuil)
+  chant-rejouissance.mp3    -> Chant de réjouissance (fête)
+  chant-cloture.mp3         -> Chant de clôture
+
+COMPORTEMENT DU SITE
+--------------------
+- Fichier présent   : le lecteur affiche la durée et permet l'écoute.
+- Fichier absent    : la carte reste visible avec la mention
+                      « Audio à venir ». Aucune erreur n'apparaît.
+
+CONSEILS
+--------
+- Format recommandé : MP3, 128 kbps mono ou 192 kbps stéréo.
+- Poids conseillé : moins de 5 Mo par chant (chargement mobile).
+
+AJOUTER / RENOMMER UN CHANT
+---------------------------
+Tout se règle dans le fichier « chants.js », à la racine du site :
+chaque chant y est décrit par un bloc (titre, catégorie, description,
+paroles, et le champ "src" qui pointe vers le fichier audio).
+Les catégories disponibles sont : hymne, traditionnel, fete, deuil.
+
+Pour publier les PAROLES d'un chant, remplissez le champ "paroles"
+du bloc correspondant. Exemple :
+
+  paroles: "Premier couplet...\nSuite du couplet...\n\nRefrain..."
+
+(le \n marque un retour à la ligne)

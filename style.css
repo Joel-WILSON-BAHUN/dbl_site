@@ -246,6 +246,9 @@ img { display: block; max-width: 100%; }
 }
 .burger-btn:hover { background: var(--bg2); }
 .burger-btn span { display: block; width: 18px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all .22s; }
+.burger-btn.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(.4); }
+.burger-btn.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* Mobile menu */
 .mobile-menu {
@@ -255,9 +258,15 @@ img { display: block; max-width: 100%; }
   padding: 10px;
   border-radius: 14px;
   list-style: none;
-  position: absolute;
-  top: calc(var(--nav-h) + 12px);
-  left: 0; right: 0;
+  position: fixed;
+  top: calc(var(--nav-h) + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94%;
+  max-width: 1280px;
+  max-height: calc(100vh - var(--nav-h) - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   z-index: 899;
   box-shadow: var(--shadow-lg);
 }
@@ -683,25 +692,38 @@ img { display: block; max-width: 100%; }
 /* ===========================
    FLAG CHIPS (drapeaux Cameroun & Gabon)
    =========================== */
-.eyebrow-hero { display: flex; align-items: center; }
+/* Les drapeaux sont placés AU-DESSUS du texte (colonne) */
+.eyebrow-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+}
 .flag-chips {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   flex-shrink: 0;
 }
 .flag-chip {
   display: block;
-  height: 16px;
+  height: 19px;
   border-radius: 3px;
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 0 0 1px rgba(255,255,255,.3), 0 1px 3px rgba(0,0,0,.4);
 }
 /* Cameroun : proportions officielles 2:3 */
-.flag-chip--cm { width: 24px; }
+.flag-chip--cm { width: 28.5px; }
 /* Gabon : proportions officielles 3:4 */
-.flag-chip--ga { width: 21.33px; }
+.flag-chip--ga { width: 25.33px; }
+/* Fin séparateur discret entre les deux drapeaux */
+.flag-chips .flag-sep {
+  width: 1px;
+  height: 13px;
+  background: rgba(255,255,255,.25);
+  flex-shrink: 0;
+}
 
 /* ===========================
    STATS BAR
@@ -997,8 +1019,336 @@ footer {
 [data-theme="dark"] .tag-gold { color: var(--gold); }
 
 /* ===========================
+   FILTRES (chips) — partagé actualités / chants
+   =========================== */
+.actu-filter {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .18s;
+  font-family: 'DM Sans', sans-serif;
+}
+.actu-filter:hover { background: var(--bg2); color: var(--text); }
+.actu-filter.active { background: var(--green); color: #fff; border-color: var(--green); }
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+
+/* ===========================
+   GRILLES UTILITAIRES (remplacent les grilles inline
+   pour rendre le responsive pilotable)
+   =========================== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.apropos-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-bottom: 72px; }
+.mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.objectifs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 18px; }
+
+/* Fiches organes (organisation.html) */
+.org-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px;
+}
+.org-card-inner { display: flex; align-items: flex-start; gap: 22px; }
+.org-card-sm {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+/* Lignes tontines (index) */
+.tontine-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* ===========================
+   SECTION SOLIDARITÉ (index) — sans référence monétaire
+   =========================== */
+.aide-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.aide-tile-solid {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.aide-tile-solid:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.aide-tile-solid .ico {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  background: var(--green-tint);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green);
+  flex-shrink: 0;
+}
+.aide-tile-solid .ico svg { width: 18px; height: 18px; }
+.aide-tile-solid .titre {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.3;
+}
+.aide-tile-solid .desc { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+.aide-tile-solid.is-accent { background: var(--green-tint); border-color: rgba(26,77,59,.15); }
+[data-theme="dark"] .aide-tile-solid.is-accent { border-color: rgba(42,168,115,.22); }
+.aide-tile-solid.is-accent .ico { background: var(--surface); }
+
+/* ===========================
+   FONDATEURS — cartes avec photo (à propos)
+   =========================== */
+.fondateur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+  gap: 16px;
+}
+.fondateur-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow .22s, transform .22s;
+}
+.fondateur-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.fondateur-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--green-tint);
+  overflow: hidden;
+}
+.fondateur-initiales {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: .02em;
+  color: var(--green);
+}
+.fondateur-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .4s;
+}
+.fondateur-card:hover .fondateur-photo img { transform: scale(1.03); }
+.fondateur-card-foot { padding: 12px 14px 14px; }
+.fondateur-card-foot .num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  color: var(--gold2);
+  display: block;
+  margin-bottom: 3px;
+}
+[data-theme="dark"] .fondateur-card-foot .num { color: var(--gold); }
+.fondateur-card-foot h4 { font-size: 13.5px; line-height: 1.35; color: var(--text); }
+
+/* ===========================
+   CHANTS — cartes + lecteur audio
+   =========================== */
+.chants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+.chant-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow .22s, transform .22s, border-color .22s;
+}
+.chant-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.chant-card.is-playing { border-color: var(--green); box-shadow: var(--shadow); }
+.chant-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.chant-titre { font-size: 16.5px; line-height: 1.3; }
+.chant-desc { font-size: 13px; color: var(--muted); line-height: 1.62; flex: 1; }
+.chant-soon {
+  display: none;
+  font-size: 10.5px; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--muted);
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+}
+.chant-card.is-unavailable .chant-soon,
+.chant-featured.is-unavailable .chant-soon { display: inline-block; }
+.chant-card.is-unavailable .player-times,
+.chant-featured.is-unavailable .player-times { opacity: .5; }
+.chant-featured .chant-soon { align-self: flex-start; }
+
+/* Carte mise en avant (hymne) */
+.chant-featured {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.chant-featured-head { background: var(--green); padding: 24px 28px 22px; }
+.chant-featured-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.15);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 10px;
+}
+.chant-featured-head h2 { font-size: 22px; color: #fff; margin-bottom: 5px; }
+.chant-featured-head p { font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.6; }
+.chant-featured-body { padding: 22px 28px 24px; display: flex; flex-direction: column; gap: 14px; }
+.chant-featured .play-btn { width: 52px; height: 52px; }
+.chant-featured .play-btn svg { width: 18px; height: 18px; }
+
+/* Lecteur audio */
+.audio-player { display: flex; align-items: center; gap: 14px; }
+.play-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--green);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s, transform .2s;
+  padding: 0;
+}
+.play-btn:hover { background: var(--green2); transform: scale(1.06); }
+.play-btn svg { width: 15px; height: 15px; display: block; }
+.play-btn .pp-pause { display: none; }
+.play-btn.playing .pp-play { display: none; }
+.play-btn.playing .pp-pause { display: block; }
+.play-btn:disabled { background: var(--bg3); color: var(--muted); cursor: not-allowed; transform: none; box-shadow: inset 0 0 0 1px var(--border); }
+.player-main { flex: 1; min-width: 0; }
+.progress-wrap {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.progress-wrap.no-seek { cursor: default; }
+.progress-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--gold);
+  border-radius: 3px;
+}
+.player-times {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Paroles */
+.paroles-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--green);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: gap .18s;
+  align-self: flex-start;
+}
+.paroles-toggle:hover { gap: 9px; }
+.paroles-toggle svg { width: 13px; height: 13px; transition: transform .22s; }
+.paroles-toggle.open svg { transform: rotate(180deg); }
+.paroles {
+  display: none;
+  padding: 15px 17px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.75;
+  white-space: pre-line;
+  max-height: 260px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg3) transparent;
+}
+.paroles.open { display: block; }
+.paroles-vide { color: var(--muted); font-style: italic; }
+
+/* Bandeau d'aide (audio à déposer) */
+.note-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.note-info svg { flex-shrink: 0; margin-top: 2px; color: var(--green); }
+.note-info strong { color: var(--text); }
+
+/* ===========================
    RESPONSIVE
    =========================== */
+@media (max-width: 1200px) {
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 7px 10px; font-size: 13px; }
+}
 @media (max-width: 1024px) {
   .statuts-layout { grid-template-columns: 1fr; }
   .statuts-nav { position: static; }
@@ -1007,18 +1357,82 @@ footer {
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .aide-grid { grid-template-columns: 1fr; gap: 32px; }
   .tontines-grid { grid-template-columns: 1fr; gap: 28px; }
+  .apropos-intro { gap: 36px; margin-bottom: 56px; }
 }
-@media (max-width: 768px) {
+/* Bascule vers le menu burger avant que la navbar ne déborde
+   (la navigation compte désormais 7 onglets) */
+@media (max-width: 1100px) {
   .nav-links { display: none; }
   .burger-btn { display: flex; }
   .btn-info-week span.btn-label { display: none; }
+  .apropos-intro { grid-template-columns: 1fr; }
+  .org-card { padding: 26px 24px; }
+  .org-card-inner { gap: 16px; }
+}
+@media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .hero-content { padding-top: calc(var(--nav-h) + 24px); }
   .bureau-grid { grid-template-columns: repeat(2,1fr); }
   .value-grid { grid-template-columns: 1fr; }
+  .objectifs-grid { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .chants-grid { grid-template-columns: 1fr; }
+  .section { padding: 56px 0; }
+  .statuts-viewer { padding: 26px 22px; min-height: 0; }
+  .chant-featured-head { padding: 22px 22px 20px; }
+  .chant-featured-body { padding: 20px 22px 22px; }
+  .chant-card { padding: 20px; }
+}
+@media (max-width: 620px) {
+  .aide-tiles { grid-template-columns: 1fr 1fr; }
+  .tontine-row { grid-template-columns: 1fr auto; gap: 10px 12px; }
+  .tontine-row .tr-tag { grid-column: 1 / -1; justify-self: start; }
+  .bureau-modal-top { flex-direction: column; align-items: stretch; }
+  .bureau-modal-photo { width: 100%; height: 190px; object-position: center top; }
+  .bureau-modal-head { padding: 18px 20px 16px; }
+  .bureau-modal-body { padding: 18px 20px 22px; max-height: 50vh; }
+  .org-card { padding: 22px 18px; }
+  .org-card-inner { flex-direction: column; gap: 14px; }
+  .statuts-viewer { padding: 22px 16px; }
+  .sv-title { font-size: 19px; }
 }
 @media (max-width: 480px) {
   .bureau-grid { grid-template-columns: repeat(2,1fr); }
+  .fondateur-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
   .stats-bar { flex-wrap: wrap; }
   .stat-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid var(--border2); }
+  .mini-stats { gap: 10px; }
+  .audio-player { gap: 11px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+@media (max-width: 380px) {
+  .aide-tiles { grid-template-columns: 1fr; }
+  .fondateur-grid { grid-template-columns: repeat(2,1fr); }
+  .nav-logo-sub { display: none; }
+  /* Navbar compacte : évite tout débordement sur les écrans 320px */
+  .navbar { padding: 0 14px; gap: 8px; }
+  .nav-logo-icon { width: 38px; height: 38px; }
+  .nav-logo-icon img { width: 36px; height: 36px; }
+  .nav-logo-main { font-size: 14px; }
+  .nav-actions { gap: 6px; }
+  .btn-info-week { padding: 8px 11px; }
+  .theme-toggle, .burger-btn { width: 34px; height: 34px; }
+}
+
+/* La marque ne doit jamais pousser la navbar au-delà de l'écran */
+.nav-logo { min-width: 0; }
+.nav-logo > div { min-width: 0; }
+.nav-logo-main { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Tables des statuts : défilement horizontal contrôlé sur petit écran */
+.sv-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg3) transparent;
+}
+.sv-table-wrap .sv-table { min-width: 520px; }
+
+/* Confort de lecture : évite tout débordement de mots longs */
+h1, h2, h3, h4, p, li, td, th { overflow-wrap: break-word; }

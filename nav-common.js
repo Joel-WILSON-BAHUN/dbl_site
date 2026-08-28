@@ -1,5 +1,12 @@
 /* nav-common.js — Navbar + Modal partagés */
 
+/* Filet de sécurité : si la librairie d'animations AOS (CDN) n'est pas
+   joignable, on la neutralise pour que le site reste pleinement
+   fonctionnel au lieu de s'interrompre sur une erreur JS. */
+if (typeof window.AOS === 'undefined') {
+  window.AOS = { init: function(){}, refresh: function(){}, refreshHard: function(){} };
+}
+
 const NAV_HTML = `
 <header>
   <nav class="navbar glass" id="navbar">
@@ -19,6 +26,7 @@ const NAV_HTML = `
       <li><a href="organisation.html" data-page="organisation">Organisation</a></li>
       <li><a href="statuts.html"      data-page="statuts">Statuts &amp; RI</a></li>
       <li><a href="bureau.html"       data-page="bureau">Bureau</a></li>
+      <li><a href="chants.html"       data-page="chants">Chants</a></li>
       <li><a href="actualites.html"   data-page="actualites">Actualités</a></li>
     </ul>
 
@@ -45,6 +53,7 @@ const NAV_HTML = `
     <li><a href="organisation.html" data-page="organisation">Organisation</a></li>
     <li><a href="statuts.html"      data-page="statuts">Statuts &amp; RI</a></li>
     <li><a href="bureau.html"       data-page="bureau">Bureau Exécutif</a></li>
+    <li><a href="chants.html"       data-page="chants">Chants</a></li>
     <li><a href="actualites.html"   data-page="actualites">Actualités</a></li>
   </ul>
 </header>
@@ -134,10 +143,37 @@ function initNav(currentPage) {
     document.getElementById('open-week-modal').style.display = 'flex';
   }
 
-  // Burger
-  document.getElementById('burger').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('open');
+  // Burger — ouverture / fermeture du menu mobile
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function setMenu(open) {
+    mobileMenu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-controls', 'mobile-menu');
+
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setMenu(!mobileMenu.classList.contains('open'));
   });
+
+  // Fermer au clic sur un lien du menu
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // Fermer au clic en dehors du menu
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.classList.contains('open')) return;
+    if (mobileMenu.contains(e.target) || burger.contains(e.target)) return;
+    setMenu(false);
+  });
+
+  // Fermer avec Échap et au passage en affichage desktop
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 1100) setMenu(false); });
 
   // Theme toggle
   document.getElementById('theme-toggle').addEventListener('click', () => {

@@ -1,0 +1,46 @@
+PORTRAITS DES MEMBRES FONDATEURS
+=================================
+
+Déposez ici les photos des 26 membres fondateurs, au format JPG.
+Le nom du fichier doit être le NUMÉRO du membre sur deux chiffres,
+tel qu'il apparaît sur la page « À Propos » :
+
+  01.jpg -> DASSI Rodrigue
+  02.jpg -> HOMDIM Gaston
+  03.jpg -> HOMDIM Hermine
+  04.jpg -> KAMOGNE Boniface
+  05.jpg -> KAMOGNE Jeannette
+  06.jpg -> KENMOGNE Dorice Flore
+  07.jpg -> MBABOU Clarisse
+  08.jpg -> MBABOU S. Bienvenu
+  09.jpg -> MBOUTCHOUANG Emmanuel
+  10.jpg -> MEDJOK Aimé
+  11.jpg -> NGUOUONMEDJE André
+  12.jpg -> NGUOUONMEDJE Viviane
+  13.jpg -> NOUMBISSI David
+  14.jpg -> NOUMBISSI Nadège
+  15.jpg -> NOUSSI Roger
+  16.jpg -> SIMEU Bernadette
+  17.jpg -> TACHENANG Francis
+  18.jpg -> TACHENANG Olive
+  19.jpg -> TCHEWEK Marcelle
+  20.jpg -> TCHEWEK Michel
+  21.jpg -> TCHOUANCHE F. Bruno
+  22.jpg -> TCHOUANGANG Raoul
+  23.jpg -> TEGUEM Elie
+  24.jpg -> WOUALE Annie
+  25.jpg -> WOUALE Pierre-Marie
+  26.jpg -> YIMFANG Marie
+
+FORMAT UNIFORME
+---------------
+- Cadrage portrait, ratio 3:4 (exemple : 600 x 800 pixels).
+- Le visage doit être dans la partie haute de l'image :
+  le site recadre automatiquement depuis le haut.
+- Poids conseillé : moins de 200 Ko par photo.
+
+SI UNE PHOTO MANQUE
+-------------------
+Les initiales du membre s'affichent automatiquement dans le même
+cadre, aux couleurs du site. La grille reste donc parfaitement
+uniforme même si toutes les photos ne sont pas encore disponibles.

@@ -22,7 +22,7 @@
 <section class="section" style="padding-top:52px;">
 
   <!-- QUI SOMMES-NOUS -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:72px;" data-aos="fade-up">
+  <div class="apropos-intro" data-aos="fade-up">
     <div>
       <span class="eyebrow">Présentation</span>
       <div class="divider"></div>
@@ -39,7 +39,7 @@
     </div>
 
     <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="mini-stats">
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;">
           <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);">2024</div>
           <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;">Statuts adoptés</div>
@@ -100,7 +100,7 @@
     <span class="eyebrow">Ce que nous faisons</span>
     <div class="divider"></div>
     <h2 class="section-title" style="margin-bottom:32px;">Quatre objectifs fondateurs</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div class="objectifs-grid">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;gap:16px;">
         <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold2);width:20px;flex-shrink:0;margin-top:2px;">A</div>
         <div>
@@ -142,33 +142,271 @@
       </div>
       <span class="tag tag-green">DBL · 2024</span>
     </div>
-    <div class="fondateur-list">
-      <div class="fondateur-item"><span class="fondateur-num">01</span>DASSI Rodrigue</div>
-      <div class="fondateur-item"><span class="fondateur-num">02</span>HOMDIM Gaston</div>
-      <div class="fondateur-item"><span class="fondateur-num">03</span>HOMDIM Hermine</div>
-      <div class="fondateur-item"><span class="fondateur-num">04</span>KAMOGNE Boniface</div>
-      <div class="fondateur-item"><span class="fondateur-num">05</span>KAMOGNE Jeannette</div>
-      <div class="fondateur-item"><span class="fondateur-num">06</span>KENMOGNE Dorice Flore</div>
-      <div class="fondateur-item"><span class="fondateur-num">07</span>MBABOU Clarisse</div>
-      <div class="fondateur-item"><span class="fondateur-num">08</span>MBABOU S. Bienvenu</div>
-      <div class="fondateur-item"><span class="fondateur-num">09</span>MBOUTCHOUANG Emmanuel</div>
-      <div class="fondateur-item"><span class="fondateur-num">10</span>MEDJOK Aimé</div>
-      <div class="fondateur-item"><span class="fondateur-num">11</span>NGUOUONMEDJE André</div>
-      <div class="fondateur-item"><span class="fondateur-num">12</span>NGUOUONMEDJE Viviane</div>
-      <div class="fondateur-item"><span class="fondateur-num">13</span>NOUMBISSI David</div>
-      <div class="fondateur-item"><span class="fondateur-num">14</span>NOUMBISSI Nadège</div>
-      <div class="fondateur-item"><span class="fondateur-num">15</span>NOUSSI Roger</div>
-      <div class="fondateur-item"><span class="fondateur-num">16</span>SIMEU Bernadette</div>
-      <div class="fondateur-item"><span class="fondateur-num">17</span>TACHENANG Francis</div>
-      <div class="fondateur-item"><span class="fondateur-num">18</span>TACHENANG Olive</div>
-      <div class="fondateur-item"><span class="fondateur-num">19</span>TCHEWEK Marcelle</div>
-      <div class="fondateur-item"><span class="fondateur-num">20</span>TCHEWEK Michel</div>
-      <div class="fondateur-item"><span class="fondateur-num">21</span>TCHOUANCHE F. Bruno</div>
-      <div class="fondateur-item"><span class="fondateur-num">22</span>TCHOUANGANG Raoul</div>
-      <div class="fondateur-item"><span class="fondateur-num">23</span>TEGUEM Elie</div>
-      <div class="fondateur-item"><span class="fondateur-num">24</span>WOUALE Annie</div>
-      <div class="fondateur-item"><span class="fondateur-num">25</span>WOUALE Pierre-Marie</div>
-      <div class="fondateur-item"><span class="fondateur-num">26</span>YIMFANG Marie</div>
+    <div class="fondateur-grid">
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">DR</span>
+          <img src="images/fondateurs/01.jpg" alt="Portrait de DASSI Rodrigue" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">01</span>
+          <h4>DASSI Rodrigue</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">HG</span>
+          <img src="images/fondateurs/02.jpg" alt="Portrait de HOMDIM Gaston" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">02</span>
+          <h4>HOMDIM Gaston</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">HH</span>
+          <img src="images/fondateurs/03.jpg" alt="Portrait de HOMDIM Hermine" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">03</span>
+          <h4>HOMDIM Hermine</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">KB</span>
+          <img src="images/fondateurs/04.jpg" alt="Portrait de KAMOGNE Boniface" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">04</span>
+          <h4>KAMOGNE Boniface</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">KJ</span>
+          <img src="images/fondateurs/05.jpg" alt="Portrait de KAMOGNE Jeannette" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">05</span>
+          <h4>KAMOGNE Jeannette</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">KD</span>
+          <img src="images/fondateurs/06.jpg" alt="Portrait de KENMOGNE Dorice Flore" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">06</span>
+          <h4>KENMOGNE Dorice Flore</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">MC</span>
+          <img src="images/fondateurs/07.jpg" alt="Portrait de MBABOU Clarisse" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">07</span>
+          <h4>MBABOU Clarisse</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">MB</span>
+          <img src="images/fondateurs/08.jpg" alt="Portrait de MBABOU S. Bienvenu" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">08</span>
+          <h4>MBABOU S. Bienvenu</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">ME</span>
+          <img src="images/fondateurs/09.jpg" alt="Portrait de MBOUTCHOUANG Emmanuel" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">09</span>
+          <h4>MBOUTCHOUANG Emmanuel</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">MA</span>
+          <img src="images/fondateurs/10.jpg" alt="Portrait de MEDJOK Aimé" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">10</span>
+          <h4>MEDJOK Aimé</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">NA</span>
+          <img src="images/fondateurs/11.jpg" alt="Portrait de NGUOUONMEDJE André" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">11</span>
+          <h4>NGUOUONMEDJE André</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">NV</span>
+          <img src="images/fondateurs/12.jpg" alt="Portrait de NGUOUONMEDJE Viviane" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">12</span>
+          <h4>NGUOUONMEDJE Viviane</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">ND</span>
+          <img src="images/fondateurs/13.jpg" alt="Portrait de NOUMBISSI David" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">13</span>
+          <h4>NOUMBISSI David</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">NN</span>
+          <img src="images/fondateurs/14.jpg" alt="Portrait de NOUMBISSI Nadège" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">14</span>
+          <h4>NOUMBISSI Nadège</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">NR</span>
+          <img src="images/fondateurs/15.jpg" alt="Portrait de NOUSSI Roger" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">15</span>
+          <h4>NOUSSI Roger</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">SB</span>
+          <img src="images/fondateurs/16.jpg" alt="Portrait de SIMEU Bernadette" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">16</span>
+          <h4>SIMEU Bernadette</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TF</span>
+          <img src="images/fondateurs/17.jpg" alt="Portrait de TACHENANG Francis" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">17</span>
+          <h4>TACHENANG Francis</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TO</span>
+          <img src="images/fondateurs/18.jpg" alt="Portrait de TACHENANG Olive" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">18</span>
+          <h4>TACHENANG Olive</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TM</span>
+          <img src="images/fondateurs/19.jpg" alt="Portrait de TCHEWEK Marcelle" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">19</span>
+          <h4>TCHEWEK Marcelle</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TM</span>
+          <img src="images/fondateurs/20.jpg" alt="Portrait de TCHEWEK Michel" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">20</span>
+          <h4>TCHEWEK Michel</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TB</span>
+          <img src="images/fondateurs/21.jpg" alt="Portrait de TCHOUANCHE F. Bruno" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">21</span>
+          <h4>TCHOUANCHE F. Bruno</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TR</span>
+          <img src="images/fondateurs/22.jpg" alt="Portrait de TCHOUANGANG Raoul" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">22</span>
+          <h4>TCHOUANGANG Raoul</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">TE</span>
+          <img src="images/fondateurs/23.jpg" alt="Portrait de TEGUEM Elie" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">23</span>
+          <h4>TEGUEM Elie</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">WA</span>
+          <img src="images/fondateurs/24.jpg" alt="Portrait de WOUALE Annie" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">24</span>
+          <h4>WOUALE Annie</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">WP</span>
+          <img src="images/fondateurs/25.jpg" alt="Portrait de WOUALE Pierre-Marie" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">25</span>
+          <h4>WOUALE Pierre-Marie</h4>
+        </div>
+      </div>
+      <div class="fondateur-card">
+        <div class="fondateur-photo">
+          <span class="fondateur-initiales" aria-hidden="true">YM</span>
+          <img src="images/fondateurs/26.jpg" alt="Portrait de YIMFANG Marie" loading="lazy" onerror="this.remove();"/>
+        </div>
+        <div class="fondateur-card-foot">
+          <span class="num">26</span>
+          <h4>YIMFANG Marie</h4>
+        </div>
+      </div>
+    </div>
+    <div class="note-info" style="margin-top:24px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Les portraits sont ajoutés au fur et à mesure de leur transmission. En l'absence de photo, les <strong>initiales du membre</strong> s'affichent afin de conserver un format uniforme.</span>
     </div>
   </div>
 

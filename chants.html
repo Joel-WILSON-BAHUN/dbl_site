@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chants — DBL</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script>(function(){ document.documentElement.setAttribute('data-theme', localStorage.getItem('dbl-theme')||'light'); })();</script>
+</head>
+<body>
+<main>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">Patrimoine culturel</span>
+    <div class="divider" style="margin:10px auto 18px;"></div>
+    <h1>Chants de la DBL</h1>
+    <p>L'hymne BAPA et les chants qui accompagnent la vie de l'association — écoute en ligne et consultation des paroles.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:48px;">
+
+  <!-- HYMNE MIS EN AVANT -->
+  <div style="margin-bottom:56px;">
+    <div class="section-header" style="margin-bottom:24px;" data-aos="fade-up">
+      <span class="eyebrow">Chant officiel</span>
+      <div class="divider"></div>
+      <h2 class="section-title" style="max-width:560px;">L'hymne de la communauté</h2>
+    </div>
+    <div id="chant-hymne"></div>
+  </div>
+
+  <!-- RÉPERTOIRE -->
+  <div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;" data-aos="fade-up">
+      <div>
+        <span class="eyebrow">Répertoire</span>
+        <div class="divider"></div>
+        <h2 class="section-title">Les chants de l'association</h2>
+      </div>
+      <span class="tag tag-green" id="chants-compteur">—</span>
+    </div>
+
+    <!-- Filtres par catégorie -->
+    <div class="filter-row" style="margin-bottom:28px;" data-aos="fade-up">
+      <button class="actu-filter active" data-filtre="tous">Tous les chants</button>
+      <button class="actu-filter" data-filtre="traditionnel">Traditionnels</button>
+      <button class="actu-filter" data-filtre="fete">Fête</button>
+      <button class="actu-filter" data-filtre="deuil">Deuil</button>
+    </div>
+
+    <div class="chants-grid" id="chants-grid"></div>
+
+    <!-- Note d'information -->
+    <div class="note-info" style="margin-top:32px;" data-aos="fade-up">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Les enregistrements sont mis en ligne au fur et à mesure. Un chant portant la mention <strong>« Audio à venir »</strong> n'a pas encore de bande son disponible : ses paroles et son contexte restent consultables.</span>
+    </div>
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2026 Dynamique Bapa de Libreville</span>
+      <span class="footer-devise">Pa 'a – Kuitchouè</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="nav-common.js"></script>
+<script src="chants.js"></script>
+<script>
+  const HYMNE = CHANTS.filter(c => c.cat === 'hymne');
+  const REPERTOIRE = CHANTS.filter(c => c.cat !== 'hymne');
+
+  // Hymne en carte mise en avant
+  renderChants(document.getElementById('chant-hymne'), HYMNE, { featured: true });
+
+  function afficherRepertoire(filtre) {
+    const liste = filtre === 'tous' ? REPERTOIRE : REPERTOIRE.filter(c => c.cat === filtre);
+    renderChants(document.getElementById('chants-grid'), liste);
+    document.getElementById('chants-compteur').textContent =
+      liste.length + (liste.length > 1 ? ' chants' : ' chant');
+  }
+
+  document.querySelectorAll('.actu-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.actu-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      afficherRepertoire(btn.dataset.filtre);
+    });
+  });
+
+  afficherRepertoire('tous');
+  initNav('chants');
+  AOS.init({ once: true, offset: 50, duration: 650 });
+</script>
+</body>
+</html>
